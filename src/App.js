@@ -6,14 +6,13 @@ function App() {
 
   const sendCommand = async (command) => {
     try {
-      const response = await axios.post(`http://192.168.8.99/control`, { command });
+      const response = await axios.get(`http://192.168.8.99/control?cmd=${command === 'abrir' ? 'O' : 'C'}`);
       setDoorStatus(response.data);
     } catch (error) {
-      alert("Error  de conexion");
       setDoorStatus('Error de conexión');
     }
   };
-
+  
   return (
     <div className="container">
       <h2 className="statusText">Estado de la Puerta:</h2>
